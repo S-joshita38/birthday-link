@@ -1,37 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Surprise 🎂</title>
+  <title>Birthday Surprise 🎂</title>
+  <style>
+    body{
+      background: linear-gradient(135deg,#ffd6e8,#ffeaf4);
+      font-family: Arial, sans-serif;
+      text-align:center;
+      padding-top:100px;
+      overflow:hidden;
+    }
 
-<script>
-window.onload = function() {
-  alert("🎉 Happy Birthday!!! You are really special 💖");
-};
-</script>
+    .card{
+      background:white;
+      padding:40px;
+      border-radius:20px;
+      width:60%;
+      margin:auto;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
 
-<style>
-body{
-  text-align:center;
-  font-family:sans-serif;
-  background:linear-gradient(to bottom right,#ffd6eb,#fff0f6);
-  padding-top:60px;
-}
-.card{
-  background:white;
-  padding:30px;
-  border-radius:25px;
-  width:70%;
-  margin:auto;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-</style>
+    h1{
+      color:#ff4d88;
+      text-shadow:0 0 10px rgba(255,77,136,0.4);
+    }
+
+    .secret{
+      display:none;
+      margin-top:20px;
+      color:#ff2f6d;
+      font-weight:bold;
+      font-size:18px;
+    }
+
+    button{
+      margin-top:20px;
+      padding:10px 20px;
+      border:none;
+      background:#ff4d88;
+      color:white;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .from{
+      margin-top:25px;
+      font-style:italic;
+      color:#ff2f6d;
+    }
+
+    /* floating hearts */
+    .heart{
+      position:absolute;
+      animation:float 6s linear infinite;
+    }
+
+    @keyframes float{
+      from{transform:translateY(100vh);}
+      to{transform:translateY(-10vh);}
+    }
+  </style>
 </head>
 
 <body>
+
 <div class="card">
-<h1>🎂 Happy Birthday 🎂</h1>
-<p>I hope your day is full of smiles, cake, and happiness 💫</p>
-<p>Someone cares about you more than you think 💖</p>
+  <h1>🎂 Happy Birthday 🎂</h1>
+  <p>I hope your day is full of smiles, cake, and happiness 💫</p>
+  <p>Someone cares about you more than you think 💖</p>
+
+  <button onclick="showMsg()">Click me</button>
+
+  <div class="secret" id="msg">
+    You’re really special to me… more than words say 💗
+  </div>
+
+  <p class="from">— from Joshita to Bangaram 💌</p>
 </div>
+
+<script>
+function showMsg(){
+  document.getElementById("msg").style.display="block";
+}
+
+/* hearts generator */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💗";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(20+Math.random()*30)+"px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+},500);
+</script>
+
 </body>
 </html>
