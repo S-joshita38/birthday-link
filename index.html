@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Birthday Surprise 🎉</title>
+  <title>Birthday Surprise</title>
   <style>
     body {
       margin: 0;
@@ -9,16 +9,25 @@
       font-family: 'Arial', sans-serif;
       text-align: center;
       background: linear-gradient(135deg, #89cff0, #d0f0fd);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
       overflow: hidden;
       height: 100vh;
       position: relative;
     }
 
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
     .card {
       background: white;
-      padding: 50px;
+      padding: 40px 20px;
       border-radius: 25px;
-      width: 60%;
+      width: 90%;
+      max-width: 600px;
       margin: auto;
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
       position: relative;
@@ -33,28 +42,29 @@
     h1 {
       color: #1e90ff;
       text-shadow: 0 0 10px rgba(30,144,255,0.4);
-      font-size: 48px;
+      font-size: 42px;
     }
 
     p {
       color: #333;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.6;
     }
 
     .secret {
-      display: none;
+      display: block;
       margin-top: 20px;
       color: #ff69b4;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .secret.show {
-      display: block;
       opacity: 1;
+      transform: translateY(0);
     }
 
     button {
@@ -83,18 +93,8 @@
     .doodle {
       position: absolute;
       pointer-events: none;
-      animation: float 6s linear infinite;
+      animation: float linear infinite;
       opacity: 0.8;
-    }
-
-    .star {
-      width: 15px;
-      height: 15px;
-      background: yellow;
-      clip-path: polygon(
-        50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
-        50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
-      );
     }
 
     .cloud {
@@ -117,38 +117,49 @@
     }
 
     @keyframes float {
-      from {transform: translateY(100vh) rotate(0deg);}
+      from {transform: translateY(var(--startY)) rotate(0deg);}
       to {transform: translateY(-10vh) rotate(360deg);}
     }
 
+    @media (max-width: 600px){
+      .card {
+        padding: 30px 15px;
+      }
+      h1 {font-size: 36px;}
+      p {font-size: 14px;}
+      .secret {font-size: 16px;}
+    }
   </style>
 </head>
 <body>
 
 <div class="card">
-  <h1>🎂 Happy Birthday! 🎂</h1>
+  <h1>Happy Birthday!</h1>
   <p>Wishing you a day full of laughter, love, and endless happiness.</p>
-  <p>marchipovu ani anukuntunna i will always love you🤌🏻😭. Miss u the most</p>
-  <p>oii gurthupeetuku nuvvu ekkadunna nenu niku toduga untanu remember i will be always there with u 😭💕.</p>
+  <p>marchipovu ani anukuntunna i will always love you. Miss u the most😭😭😭</p>
+  <p>oii gurthupeetuku nuvvu ekkadunna nenu niku toduga untanu remember i will always be there with u.</p>
   <p>Remember, life is brighter with your smile, and the world is luckier to have you in it.</p>
-  <p>Someone cares about you more than you know… and that’s why today is extra magical.I LOVE YOUUUUU❤️❤️❤️</p>
+  <p>Someone cares about you more than you know… and that’s why today is extra magical.</p>
 
   <button onclick="showMsg()">Click for a Secret Message</button>
 
   <div class="secret" id="msg">
-    You’re truly amazing foer me , and I hope this year brings you joy, adventure, and no matter what i will always love you take care bangaram enjoy ur day.
+    You’re truly amazing for me, and I hope this year brings you joy, adventure, and no matter what, I will always love you❤️❤️❤️. Take care Bangaram, enjoy your day.
   </div>
 
-  <p class="from">— from Joshita to Bangaram💕</p>
+  <p class="from">— from Joshita to Bangaram</p>
 </div>
 
 <script>
 function showMsg(){
   const msg = document.getElementById("msg");
   msg.classList.add("show");
+  // optional chime sound
+  const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
+  audio.play();
 }
 
-/* Generate ONLY doodles – no hearts anywhere */
+/* Generate doodles from random heights */
 const doodleTypes = ['cloud', 'sparkle'];
 
 setInterval(() => {
@@ -156,12 +167,14 @@ setInterval(() => {
   const doodle = document.createElement("div");
   doodle.className = `doodle ${type}`;
   doodle.style.left = Math.random() * 100 + "vw";
-  doodle.style.fontSize = (15 + Math.random()*15) + "px";
+  doodle.style.setProperty('--startY', (Math.random() * 80 + 20) + 'vh');
+  doodle.style.width = (10 + Math.random()*20) + "px";
+  doodle.style.height = (10 + Math.random()*20) + "px";
   doodle.style.animationDuration = (4 + Math.random()*4) + "s";
   doodle.style.transform = `rotate(${Math.random()*360}deg)`;
   document.body.appendChild(doodle);
 
-  setTimeout(() => doodle.remove(), 6000);
+  setTimeout(() => doodle.remove(), 8000);
 }, 400);
 </script>
 
