@@ -3,7 +3,6 @@
 <head>
   <title>Birthday Surprise 🎉</title>
   <style>
-    /* 🌌 Background */
     body {
       margin: 0;
       padding: 0;
@@ -15,7 +14,6 @@
       position: relative;
     }
 
-    /* 🎁 Card */
     .card {
       background: white;
       padding: 50px;
@@ -111,8 +109,10 @@
       width: 8px;
       height: 8px;
       background: #fff;
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
-                         50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+        50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+      );
       opacity: 0.6;
     }
 
@@ -135,7 +135,7 @@
   <button onclick="showMsg()">Click for a Secret Message 💌</button>
 
   <div class="secret" id="msg">
-    You’re truly amazing, and I hope this year brings you joy, adventure, and all the love you deserve. 💗✨
+    You’re truly amazing, and I hope this year brings you joy, adventure, and all the love you deserve. ✨
   </div>
 
   <p class="from">— from Joshita to Bangaram 💙</p>
@@ -147,7 +147,7 @@ function showMsg(){
   msg.classList.add("show");
 }
 
-/* 🌟 Generate random doodles */
+/* 🌟 Generate only CSS doodles – NO HEARTS */
 const doodleTypes = ['star', 'cloud', 'sparkle'];
 
 setInterval(() => {
