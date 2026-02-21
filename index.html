@@ -1,99 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Birthday Surprise 🎂</title>
+  <title>Birthday Surprise 🎉</title>
   <style>
-    body{
-      background: linear-gradient(135deg,#ffd6e8,#ffeaf4);
-      font-family: Arial, sans-serif;
-      text-align:center;
-      padding-top:100px;
-      overflow:hidden;
+    body {
+      background: linear-gradient(135deg, #89cff0, #d0f0fd); /* soft blue gradient */
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding-top: 80px;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
     }
 
-    .card{
-      background:white;
-      padding:40px;
-      border-radius:20px;
-      width:60%;
-      margin:auto;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    .card {
+      background: white;
+      padding: 50px;
+      border-radius: 25px;
+      width: 60%;
+      margin: auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+      transition: transform 0.3s ease;
     }
 
-    h1{
-      color:#ff4d88;
-      text-shadow:0 0 10px rgba(255,77,136,0.4);
+    .card:hover {
+      transform: scale(1.03);
     }
 
-    .secret{
-      display:none;
-      margin-top:20px;
-      color:#ff2f6d;
-      font-weight:bold;
-      font-size:18px;
+    h1 {
+      color: #1e90ff;
+      text-shadow: 0 0 10px rgba(30,144,255,0.4);
+      font-size: 48px;
     }
 
-    button{
-      margin-top:20px;
-      padding:10px 20px;
-      border:none;
-      background:#ff4d88;
-      color:white;
-      border-radius:10px;
-      cursor:pointer;
+    p {
+      color: #333;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
-    .from{
-      margin-top:25px;
-      font-style:italic;
-      color:#ff2f6d;
+    .secret {
+      display: none;
+      margin-top: 20px;
+      color: #ff69b4;
+      font-weight: bold;
+      font-size: 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .secret.show {
+      display: block;
+      opacity: 1;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #187bcd;
+    }
+
+    .from {
+      margin-top: 30px;
+      font-style: italic;
+      color: #1e90ff;
     }
 
     /* floating hearts */
-    .heart{
-      position:absolute;
-      animation:float 6s linear infinite;
+    .heart {
+      position: absolute;
+      animation: float 6s linear infinite;
+      pointer-events: none;
     }
 
-    @keyframes float{
-      from{transform:translateY(100vh);}
-      to{transform:translateY(-10vh);}
+    @keyframes float {
+      from { transform: translateY(100vh) rotate(0deg);}
+      to { transform: translateY(-10vh) rotate(360deg);}
     }
   </style>
 </head>
-
 <body>
 
 <div class="card">
-  <h1>🎂 Happy Birthday 🎂</h1>
-  <p>I hope your day is full of smiles, cake, and happiness 💫</p>
-  <p>Someone cares about you more than you think 💖</p>
+  <h1>🎂 Happy Birthday! 🎂</h1>
+  <p>Wishing you a day full of laughter, love, and endless happiness. 💙</p>
+  <p>May your dreams soar higher than the sky, and may every moment today be as special as you are.</p>
+  <p>Remember, life is brighter with your smile, and the world is luckier to have you in it. 🌟</p>
+  <p>Someone cares about you more than you know… and that’s why today is extra magical. 💖</p>
 
-  <button onclick="showMsg()">Click me</button>
+  <button onclick="showMsg()">Click for a Secret Message 💌</button>
 
   <div class="secret" id="msg">
-    You’re really special to me… more than words say 💗
+    You’re truly amazing, and I hope this year brings you joy, adventure, and all the love you deserve. 💗✨
   </div>
 
-  <p class="from">— from Joshita to Bangaram 💌</p>
+  <p class="from">— from Joshita to Bangaram 💙</p>
 </div>
 
 <script>
 function showMsg(){
-  document.getElementById("msg").style.display="block";
+  const msg = document.getElementById("msg");
+  msg.classList.add("show");
 }
 
 /* hearts generator */
-setInterval(()=>{
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="💗";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=(20+Math.random()*30)+"px";
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💙";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (20 + Math.random() * 30) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  heart.style.transform = `rotate(${Math.random()*360}deg)`;
   document.body.appendChild(heart);
 
-  setTimeout(()=>heart.remove(),6000);
-},500);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
 </script>
 
 </body>
